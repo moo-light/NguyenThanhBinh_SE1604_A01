@@ -1,0 +1,80 @@
+﻿<Window x:Class="NguyenThanhBinhWPF.AdminContent.FlowerBouquetAddOrUpdateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NguyenThanhBinhWPF.AdminContent"
+        mc:Ignorable="d"
+        Closing="Window_Closing"
+        Title="FlowerBouquetAddOrUpdateWindow" Height="300" Width="500">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Id:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0 0 5 0"/>
+        <TextBox Name="txtFlowerBouquetId" 
+                         Text="{Binding Path=FlowerBouquetId}" 
+                         DataContext="{Binding SelectedFlowerBouquet}" 
+                         Grid.Row="0" Grid.Column="1" Width="300" Margin="0 0 10 0" IsReadOnly="True"/>
+
+        <TextBlock Text="Name:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 5 0"/>
+        <TextBox Name="txtFlowerBouquetName" 
+                         Text="{Binding Path=FlowerBouquetName}" 
+                          Grid.Row="2" Grid.Column="1" Width="300" Margin="0 5 10 0"
+                         DataContext="{Binding SelectedFlowerBouquet}"/>
+
+        <TextBlock Text="Description:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 5 0"/>
+        <TextBox Name="txtDescription" 
+                         Text="{Binding Path=Description}" 
+                         TextWrapping="Wrap" Height="35"
+                          Grid.Row="3" Grid.Column="1" Width="300" Margin="0 5 10 0"
+                         DataContext="{Binding SelectedFlowerBouquet}"/>
+
+        <TextBlock Text="Unit Price:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 5 0"/>
+        <TextBox Name="txtUnitPrice" 
+                         Text="{Binding Path=UnitPrice, StringFormat=N2}" 
+                          Grid.Row="4" Grid.Column="1" Width="300" Margin="0 5 10 0"
+                         DataContext="{Binding SelectedFlowerBouquet}"/>
+
+        <TextBlock Text="Units In Stock:" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 5 0"/>
+        <TextBox Name="txtUnitsInStock" 
+                         Text="{Binding Path=UnitsInStock}" 
+                          Grid.Row="5" Grid.Column="1" Width="300" Margin="0 5 10 0"
+                         DataContext="{Binding SelectedFlowerBouquet}"/>
+
+        <TextBlock Text="Supplier:" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 5 0"/>
+        <ComboBox Name="cboSupplier" 
+                         DisplayMemberPath="SupplierName"
+                         SelectedValuePath="SupplierId"
+                         SelectedItem="{Binding SelectedFlowerBouquet.Supplier}"
+                         SelectedValue="{Binding SelectedFlowerBouquet.SupplierId}"
+                         Grid.Row="7" Grid.Column="1" Width="300" Margin="0 5 10 0"
+                         ItemsSource="{Binding Path=Suppliers}"/>
+        <TextBlock Text="Category:" Grid.Row="8" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 5 0"/>
+        <ComboBox Name="cboCategory" 
+                         DisplayMemberPath="CategoryName"
+                         SelectedValuePath="CategoryId"
+                         SelectedItem="{Binding SelectedFlowerBouquet.Category}"
+                         SelectedValue="{Binding SelectedFlowerBouquet.CategoryId}"
+                         Grid.Row="8" Grid.Column="1" Width="300" Margin="0 5 10 0"
+                         ItemsSource="{Binding Path=Categories}"/>
+        <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal"
+                        Height="40" HorizontalAlignment="Right">
+            <Button x:Name="btnAction" Click="btnAction_Click" Margin="20,0" Width="100"/>
+            <Button x:Name="btnCancel" Click="btnCancel_Click" Content="Cancel" Width="100"/>
+        </StackPanel>
+    </Grid>
+</Window>

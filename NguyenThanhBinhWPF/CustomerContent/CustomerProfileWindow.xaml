@@ -1,0 +1,51 @@
+﻿<Window x:Class="NguyenThanhBinhWPF.CustomerContent.CustomerProfileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NguyenThanhBinhWPF.CustomerContent" xmlns:businessobject="clr-namespace:BusinessObject;assembly=BusinessObject" d:DataContext="{d:DesignInstance Type=businessobject:Customer}"
+        mc:Ignorable="d"
+        Closing="Window_Closing"
+        Loaded="Window_Loaded"
+        Title="User Profile" Height="650" Width="800">
+    <Grid>
+
+        <StackPanel Name="spCustomerView" >
+            <Label Content="Name:" FontSize="18" Margin="0,10,0,0"/>
+            <TextBlock x:Name="blCustomerName" Text="{Binding CustomerName}" FontSize="24" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtCustomerName" Text="{Binding ElementName=blCustomerName,Path=Text}" FontSize="24" Margin="0,0,0,10" Visibility="Collapsed"/>
+
+            <Label Content="Email:" FontSize="18" Margin="0,10,0,0"/>
+            <TextBlock x:Name="blEmail" Text="{Binding Email}" FontSize="24" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtEmail" Text="{Binding ElementName=blEmail,Path=Text}" FontSize="24" Margin="0,0,0,10" Visibility="Collapsed"/>
+
+            <Label Content="City:" FontSize="18" Margin="0,10,0,0"/>
+            <TextBlock x:Name="blCity" Text="{Binding City}" FontSize="24" Margin="0,0,0,10"/>
+            <TextBox Name="txtCity" Text="{Binding ElementName=blCity,Path=Text}" FontSize="24" Margin="0,0,0,10" Visibility="Collapsed"/>
+
+            <Label Content="Country:" FontSize="18" Margin="0,10,0,0"/>
+            <TextBlock x:Name="blCountry" Text="{Binding Country}" FontSize="24" Margin="0,0,0,10"/>
+            <TextBox Name="txtCountry" Text="{Binding ElementName=blCountry,Path=Text}" FontSize="24" Margin="0,0,0,10" Visibility="Collapsed"/>
+
+            <Label Content="Birthday:" FontSize="18" Margin="0,10,0,0"/>
+            <TextBlock x:Name="blBirthday" Text="{Binding Birthday,StringFormat='dd/MM/yyyy'}" FontSize="24" Margin="0,0,0,10"/>
+            <TextBox Name="txtBirthDay" Text="{Binding ElementName=blBirthday,StringFormat='dd/MM/yyyy',Path=Text}" FontSize="24" Margin="0,0,0,10" Visibility="Collapsed"/>
+
+            <Label Content="Password:" FontSize="18" Margin="0,10,0,0"/>
+            <PasswordBox Name="txtPassword"
+                         IsEnabled="False" FontSize="24" Margin="0,0,0,10" />
+            <Button Name="btnEdit"
+                        Content="Edit" Width="120" Height="40" Margin="0,20,0,0"
+                        Click="btnEdit_Click"/>
+
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnSave" 
+                            Content="Save" Width="120" Height="40" Margin="0,20,0,0"
+                            Click="btnSave_Click" Visibility="Collapsed"/>
+                <Button x:Name="btnCancel"
+                            Content="Cancel" Width="120" Height="40" Margin="20,20,0,0"
+                            Click="btnCancel_Click" Visibility="Collapsed"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

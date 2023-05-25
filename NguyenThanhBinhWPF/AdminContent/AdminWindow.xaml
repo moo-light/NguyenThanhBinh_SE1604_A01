@@ -1,0 +1,38 @@
+﻿<Window x:Class="NguyenThanhBinhWPF.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        xmlns:local="clr-namespace:NguyenThanhBinhWPF" 
+        Background="Green"
+        FontFamily="Arial"
+        Closing="Window_Closing"
+        Title="FUFlowerSystem" Height="400" Width="400">
+    <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="5,20"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="MinWidth" Value="150"/>
+                <Setter Property="Height" Value="50"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+
+        </StackPanel.Resources>
+        <TextBlock Text="Welcome Admin" 
+                   FontSize="40"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   Margin="0,20"
+                   HorizontalAlignment="Stretch"
+                   TextAlignment="Center"/>
+        <Button Name="btnViewCustomerInfomation" Content=" View Customer Infomation "
+                Click="btnViewCustomerInfomation_Click"/>
+        <Button Name="btnViewFlowerBouquetInfomation" Content=" View Flower Boutquet Infomation "
+                Click="btnViewFlowerBouquetInfomation_Click"/>
+        <Button Name="btnViewOrderInfomation" Content=" View Order Infomation " 
+                Click="btnViewOrderInfomation_Click"/>
+    </StackPanel>
+</Window>

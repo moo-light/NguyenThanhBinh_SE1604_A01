@@ -1,0 +1,141 @@
+﻿<Window x:Class="NguyenThanhBinhWPF.CustomerContent.CustomerPlaceOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NguyenThanhBinhWPF.CustomerContent"
+        mc:Ignorable="d"
+        Background="GreenYellow"
+        Title="Place Order" Height="550" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <DockPanel 
+                    VerticalAlignment="Bottom" 
+                    Width="Auto"
+                    >
+            <Grid DockPanel.Dock="Left">
+                <Grid.Resources>
+                    <Style TargetType="TextBlock" >
+                        <Setter Property="Width" Value="200"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox x:Name="cboFlowerBouquet" Grid.Row="0" Grid.Column="1"
+                      ItemsSource="{Binding FlowerBouquets}"
+                      SelectedItem="{Binding SelectedFlowerBouquet}"
+                      SelectedValue="{Binding SelectedFlowerBouquet.FlowerBouquetId}"
+                      SelectedValuePath="FlowerBouquetId"
+                      DisplayMemberPath="FlowerBouquetName"
+                      Width="200" VerticalAlignment="Top" />
+                <Label Grid.Row="1" Grid.Column="0" Content="FlowerBouquetId:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ElementName=cboFlowerBouquet, Path=SelectedValue}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="FlowerBouquetName:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ElementName=cboFlowerBouquet, Path=SelectedItem.FlowerBouquetName}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="Description:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ElementName=cboFlowerBouquet, Path=SelectedItem.Description}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Grid.Row="4" Grid.Column="0" Content="UnitPrice:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ElementName=cboFlowerBouquet, Path=SelectedItem.UnitPrice, StringFormat='{}{0:C}'}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Grid.Row="5" Grid.Column="0" Content="UnitsInStock:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ElementName=cboFlowerBouquet, Path=SelectedItem.UnitsInStock}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Grid.Row="6" Grid.Column="0" Content="CategoryId:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding ElementName=cboFlowerBouquet, Path=SelectedItem.CategoryId}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Grid.Row="7" Grid.Column="0" Content="SupplierId:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding ElementName=cboFlowerBouquet, Path=SelectedItem.SupplierId}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid DockPanel.Dock="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnAddOrderDetail" Width="100" Height="30" Margin="20,5" 
+                        Click="btnAddOrderDetail_Click" 
+                        Content="Add" VerticalAlignment="Bottom"/>
+
+            </Grid>
+            <Grid VerticalAlignment="Bottom" Margin="0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="Quantity:"/>
+                <TextBox Width="50" Name="txtQuantity"  
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Grid.Column="1" Text="{Binding SelectedOrderDetail.Quantity}"/>
+                <Button HorizontalAlignment="Left" VerticalAlignment="Center" 
+                        Grid.Column="2"
+                        Name="btnPlus"
+                        Click="btnPlus_Click"
+                        FontSize="20"
+                        Margin="5,0"
+                        Content="+" Width="30" Height="30"/>
+                <Button HorizontalAlignment="Left" VerticalAlignment="Center" 
+                        Grid.Column="2"
+                        Name="btnMinus"
+                        FontSize="20"
+                        Margin="40,0"
+                        Click="btnMinus_Click"
+                        Content="-" Width="30" Height="30"/>
+                <Label Content="Discount:" Grid.Row="1"/>
+                <TextBox Width="50" Name="txtDiscount"  Grid.Row="1"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Grid.Column="1" Text="{Binding SelectedOrderDetail.Discount,StringFormat=N2}"/>
+
+            </Grid>
+        </DockPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListView  Name="lvOrderDetail"
+                       ItemsSource="{Binding OrderDetails}"
+                       SelectedItem="{Binding SelectedOrderDetail}"
+                       Grid.ColumnSpan="2">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Order Id" DisplayMemberBinding="{Binding Path=OrderId}" Width="60"/>
+                        <GridViewColumn Header="FlowerBouquet Name" DisplayMemberBinding="{Binding Path=FlowerBouquet.FlowerBouquetName}" Width="130"/>
+                        <GridViewColumn Header="Unit Price" DisplayMemberBinding="{Binding Path=UnitPrice,StringFormat=N2}" Width="100"/>
+                        <GridViewColumn Header="Quantity" DisplayMemberBinding="{Binding Path=Quantity}" Width="100"/>
+                        <GridViewColumn Header="Discount" DisplayMemberBinding="{Binding Path=Discount,StringFormat=N2}" Width="60"/>
+                        <GridViewColumn Header="Actual Price" DisplayMemberBinding="{Binding Path=ActualPrice ,StringFormat=N2}" Width="100"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button x:Name="btnRemove" Grid.Column="1" 
+                        Click="btnRemove_Click"
+                        Content="Remove"
+                        Width="100" Height="30" Margin="20,10"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        </Grid>
+        <StackPanel Grid.Row="2" Margin="10,5" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="btnPlaceOrder" Click="btnPlaceOrder_Click" Content="Place Order" Width="100" Height="30" />
+            <Button Name="btnCancel" Width="100" Click="btnCancel_Click" Content="Cancel" Height="30" Margin="10,0" />
+        </StackPanel>
+    </Grid>
+</Window>

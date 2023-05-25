@@ -1,0 +1,61 @@
+﻿<Window x:Class="NguyenThanhBinhWPF.CustomerContent.OrderDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NguyenThanhBinhWPF.CustomerContent"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Background="GreenYellow"
+        Height="500" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="spOrder" Orientation="Vertical" DataContext="{Binding Order}" >
+            <StackPanel.Resources>
+                <!-- Define a Style for the TextBlocks -->
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="0 4"/>
+                </Style>
+                <Style TargetType="Label">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Order ID:"/>
+                <TextBlock Text="{Binding OrderId}"/>
+                <Label Content="Customer ID:"/>
+                <TextBlock Text="{Binding CustomerId}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Order Date:"/>
+                <TextBlock Text="{Binding OrderDate}"/>
+                <Label Content="Shipped Date:"/>
+                <TextBlock Text="{Binding ShippedDate}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Total:"/>
+                <TextBlock Text="{Binding Total}"/>
+                <Label Content="Order Status:"/>
+                <TextBlock Text="{Binding OrderStatus}"/>
+            </StackPanel>
+
+        </StackPanel>
+        <DataGrid Grid.Row="1"
+            ItemsSource="{Binding Details}"
+                  x:Name="dgOrderDetail"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Flower Bouquet Name" Binding="{Binding FlowerBouquetName}" />
+                <DataGridTextColumn Width="200" Header="Flower Bouquet Description" Binding="{Binding Description}" />
+                <DataGridTextColumn Header="Unit Price" Binding="{Binding UnitPrice}" />
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
+                <DataGridTextColumn Header="Discount" Binding="{Binding Discount}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,0 +1,65 @@
+﻿<Window x:Class="NguyenThanhBinhWPF.AdminContent.CustomerManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NguyenThanhBinhWPF.AdminContent"
+        mc:Ignorable="d"
+        Closing="Window_Closing"
+        Background="Green" Foreground="White"
+        Title="Customer Information Management" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="0 0 5 0"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Search Section -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <TextBlock Text="Search By:" VerticalAlignment="Center" Margin="0 0 5 0"/>
+            <TextBox Name="txtSearchCriteria"
+                     Width="300" Margin="0 0 5 0" VerticalAlignment="Center"/>
+            <Button Name="btnSearch" Content="Search" Click="btnSearch_Click"/>
+        </StackPanel>
+
+        <!-- Customers List Section -->
+        <ListView Grid.Row="1" Margin="10" SelectionMode="Single" 
+                  SelectionChanged="ListView_SelectionChanged"
+                  Name="lvCustomerList"
+                  MouseDoubleClick="lvCustomerList_MouseDoubleClick"
+                  ItemsSource="{Binding Path=Customers}" SelectedItem="{Binding Path=Customer, Mode=TwoWay}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=CustomerId}" Width="40" />
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Path=Email}" Width="150"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=CustomerName}" Width="150"/>
+                    <GridViewColumn Header="City" DisplayMemberBinding="{Binding Path=City}" Width="100"/>
+                    <GridViewColumn Header="Country" DisplayMemberBinding="{Binding Path=Country}" Width="100"/>
+                    <GridViewColumn Header="Birthday" DisplayMemberBinding="{Binding Path=Birthday,StringFormat='dd/MM/yyyy'}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Customer Details Section -->
+        <!-- Action Buttons Section -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="Width" Value="50"/>
+                    <Setter Property="VerticalAlignment" Value="Bottom"/>
+
+                </Style>
+            </StackPanel.Resources>
+            <Button Name="btnNew" Content="New" Click="btnNew_Click"/>
+            <Button Name="btnDelete" Content="Delete" Click="btnDelete_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
